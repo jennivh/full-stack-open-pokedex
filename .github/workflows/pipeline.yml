@@ -45,7 +45,7 @@ jobs:
         uses: Ilshidur/action-discord@master
         if: ${{failure()}}
         with:
-          args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
+          args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} was not build.'
        
 
   tag_release:
