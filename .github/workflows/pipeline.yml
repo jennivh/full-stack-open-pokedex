@@ -44,8 +44,9 @@ jobs:
         if: failure()
         with:
             severity: error
-            details: Test Failed!
+            details: Oh no! Test Failed!
             webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+
 
   tag_release:
     needs: [simple_deployment_pipeline]
