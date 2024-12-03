@@ -33,20 +33,20 @@ jobs:
         if: ${{ github.event_name == 'push' }}
         run: curl -X POST https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
       - name: Test Success
-        uses: rjstone/discord-webhook-notify@v1
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
         if: ${{success()}}
         with:
-            severity: info
-            details: Test Succeeded!
-            webhookUrl: ${{ toJson(secrets.DISCORD_WEBHOOK) }}
+          args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
       - name: Test Failure
-        uses: rjstone/discord-webhook-notify@v1
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
         if: ${{failure()}}
         with:
-            severity: error
-            details: Oh no! Test Failed!
-            webhookUrl: ${{ toJson(secrets.DISCORD_WEBHOOK)  }}
-
+          args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
+       
 
   tag_release:
     needs: [simple_deployment_pipeline]
