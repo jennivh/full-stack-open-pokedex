@@ -4,6 +4,10 @@ This repository is used for the CI/CD module of the Full stack open course
 
 Fork the repository to complete course exercises
 
+## exercises 11.20 and 11.21
+
+-[Github Link](https://github.com/jennivh/Blogilista_11)
+
 ## Commands
 
 Start by running `npm install` inside the project folder
